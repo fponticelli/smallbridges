@@ -22,3 +22,6 @@ module roundedBox(size, radius) {
 	linear_extrude(height=z)
 		roundedRect(size, radius);
 }
+
+$fn = 16;
+roundedBox([20, 20, 20], 5);
