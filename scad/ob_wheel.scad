@@ -64,6 +64,7 @@ module solidWheelXtreme() {
 }
 
 module ob_wheel_test() {
+	$fn = 32;
 	solidWheel();
 
 	translate([30, 0, 0])

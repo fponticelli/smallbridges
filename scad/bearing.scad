@@ -50,5 +50,6 @@ module ballBearing625_2rs() {
 }
 
 module bearing_test() {
+	$fn = 32;
 	ballBearing625_2rs();
 }

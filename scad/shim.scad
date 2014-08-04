@@ -37,5 +37,6 @@ module precisionShim10x5x1() {
 }
 
 module shim_test() {
+	$fn = 32;
 	precisionShim10x5x1();
 }
