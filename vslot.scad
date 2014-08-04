@@ -8,7 +8,7 @@ vslot_color = Aluminum;
 
 module vslot(length=50, sections=1, finish) {
 	size = sections * 20;
-	bom(str("vslot20x", size), str("v-slot 20x", size), ["extrusion", "structure"]);
+	bom(str("vslot20x", size, "x", length), str("v-slot 20x", size, " (", length , "mm)"), ["rail", "extrusion", "structure"]);
 	$fn = 16;
 	cutext = [[12.00,4.50],[10.00,4.50],[8.20,2.78],[8.20,5.50],[6.56,5.50],[3.90,2.84],[3.90,0.21],[3.69,0.00],[3.90,-0.21],[3.90,-2.84],[6.56,-5.50],[8.20,-5.50],[8.20,-2.78],[10.00,-4.50],[12.00,-4.50]];
 	cutint = [[16.10,0.21],[16.10,2.84],[12.70,6.24],[12.70,8.78],[7.30,8.78],[7.30,6.24],[3.90,2.84],[3.90,0.21],[3.69,0.00],[3.90,-0.21],[3.90,-2.84],[7.30,-6.24],[7.30,-8.78],[12.70,-8.78],[12.70,-6.24],[16.10,-2.84],[16.10,-0.21],[16.31,0.00],];
@@ -59,16 +59,19 @@ module vslot20x60(length, finish) { vslot(length, 3, finish); }
 
 module vslot20x80(length, finish) { vslot(length, 4, finish); }
 
-vslot20x20(100);
 
-translate([0, 40, 0])
-vslot20x40(100, vslot_color_black);
+module vslot_test() {
+	vslot20x20(100);
 
-translate([0, 80, 0])
-vslot20x60(100);
+	translate([0, 40, 0])
+	vslot20x40(100, vslot_color_black);
 
-translate([0, 120, 0])
-vslot20x80(100, vslot_color_black);
+	translate([0, 80, 0])
+	vslot20x60(100);
+
+	translate([0, 120, 0])
+	vslot20x80(100, vslot_color_black);
+}
 
 
 
