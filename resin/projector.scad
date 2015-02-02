@@ -49,7 +49,7 @@ module Acer_H6510BD(showProjection=true) {
     distToWidth = 192/225;
     widthToHeight = 16/9;
     dist = 225;
-    color([0.75,1,1,0.5])
+    color([0.75,1,1,0.1])
       projection([-lensY,lensX,0], distToWidth, widthToHeight, dist);
   }
 }
