@@ -1,10 +1,10 @@
-module projector(width, depth, height, feetHeight, lensDiameter, lensX, lensY) {
+module projector(width, depth, height, supportHeight, lensDiameter, lensX, lensY) {
   color("White")
     difference() {
-      translate([0, 0, feetHeight])
+      translate([0, 0, supportHeight])
         cube([width, depth, height]);
-      rotate([90,0,90])
-        translate([lensX, lensY, -2])
+      rotate([90,0,0])
+        translate([lensX, lensY, -depth-2])
           cylinder(20, lensDiameter, lensDiameter / 3 * 2);
     }
 }
@@ -32,25 +32,27 @@ module pyramid(w, l, h) {
 module projection(center, distToWidth, widthToHeight, dist) {
   w = distToWidth * dist;
   h = widthToHeight * w;
-  rotate([0,90,0])
+  rotate([0,90,-90])
     translate([-w/2,-h/2,-dist])
       translate(center)
         pyramid(w, h, dist);
 }
 
 module Acer_H6510BD(showProjection=true) {
-  feetHeight = 8; // ~
+  supportHeight = 8; // ~
   height = 78;
   lensDiameter = 30; // ~
   lensX = 55; // ~
-  lensY = feetHeight + height / 2;
-  projector(264, 220, height, feetHeight, lensDiameter, lensX, lensY);
+  lensY = supportHeight + height / 2;
+  width = 264;
+  depth = 220;
+  projector(width, depth, height, supportHeight, lensDiameter, lensX, lensY);
   if(showProjection) {
     distToWidth = 192/225;
     widthToHeight = 16/9;
     dist = 225;
     color([0.75,1,1,0.1])
-      projection([-lensY,lensX,0], distToWidth, widthToHeight, dist);
+      projection([-lensY,lensX,-depth], distToWidth, widthToHeight, dist);
   }
 }
 
