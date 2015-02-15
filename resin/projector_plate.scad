@@ -1,17 +1,22 @@
-module Acer_Plate(width, height, depth = 5, offsetX = 0, offsetY = 0) {
+use <plate.scad>;
+
+module Acer_Plate(width, height, offsetX = 0, offsetY = 0, depth = 4) {
+  x = 264 - 44.5;
+  y = 220 - 20 - 81.5;
   p0 = [0, 0, -depth / 2];
   p1 = [-110.05, 0, -depth / 2];
   p2 = [-55, 81.5, -depth / 2];
-  rad = 3; // TODO
-  translate([width / 2+offsetX, height / 2+offsetY, 0])
-    difference() {
-      translate([-width / 2+offsetX, -height / 2+offsetY, 0])
-        cube([width, height, depth]);
-        translate(p0)
-          cylinder(depth * 2, rad, rad);
-        translate(p1)
-          cylinder(depth * 2, rad, rad);
-        translate(p2)
-          cylinder(depth * 2, rad, rad);
+  rad = 1.75; // screw is 1.5
+  difference() {
+    translate([offsetX, offsetY, 0])
+      plate(width, height, depth);
+    translate([x,y,0]) {
+      translate(p0)
+        cylinder(depth * 2, rad, rad);
+      translate(p1)
+        cylinder(depth * 2, rad, rad);
+      translate(p2)
+        cylinder(depth * 2, rad, rad);
     }
+  }
 }

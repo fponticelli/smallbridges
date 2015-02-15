@@ -2,11 +2,10 @@ use <projector_plate.scad>;
 use <projector.scad>;
 use <profile.scad>;
 
-//rotate([0,90,0])
-  translate([0,0,0]) {
-    Acer_Plate(300, 200);
-    Acer_H6510BD(true);
-  }
+translate([0,0,0]) {
+  Acer_Plate(200, 120, 60, 100);
+  Acer_H6510BD(true);
+}
 
 /*
 len = 270;
