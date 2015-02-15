@@ -10,6 +10,7 @@ module Acer_Plate(width, height, offsetX = 0, offsetY = 0, depth = 4) {
   difference() {
     translate([offsetX, offsetY, 0])
       plate(width, height, depth);
+    color("black")
     translate([x,y,0]) {
       translate(p0)
         cylinder(depth * 2, rad, rad);

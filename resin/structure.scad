@@ -1,6 +1,8 @@
 use <projector_plate.scad>;
 use <projector.scad>;
-use <profile.scad>;
+include <profile.scad>;
+
+$detailed = false;
 
 translate([0,0,0]) {
   Acer_Plate(200, 120, 60, 100);
@@ -13,8 +15,7 @@ translate([-20,60,-len])
   profile_20x20(len);
 translate([-20,140,-len])
   profile_20x20(len);
-*/
-/*
+
 translate([50, 0, 0])
   profile_20x40(100);
 
