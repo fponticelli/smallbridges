@@ -6,7 +6,8 @@ include <shim.scad>;
 acetal_black = [0.2,0.2,0.2];
 polycarbonate_clear = [0.95,0.95,0.95,0.6];
 
-module solidWheel(finish) {
+ob_wheel_half_width = 5.89;
+module ob_solid_wheel(finish) {
 	ri = 11.455;
 	re =  9.77;
 	hi =  5.89;
@@ -56,17 +57,17 @@ module solidWheel(finish) {
 	translate([0, 0, -(off / 2 + ballBearing625_2rs_height / 2)])
 		ballBearing625_2rs();
 
-	precisionShim10x5x1();
+	precision_shim_10x5x1();
 }
 
-module solidWheelXtreme() {
-	solidWheel(polycarbonate_clear);
+module ob_solid_wheel_xtreme() {
+	ob_solid_wheel(polycarbonate_clear);
 }
 
 module ob_wheel_test() {
 	$fn = 32;
-	solidWheel();
+	ob_solid_wheel();
 
 	translate([30, 0, 0])
-	solidWheelXtreme();
+	ob_solid_wheel_xtreme();
 }

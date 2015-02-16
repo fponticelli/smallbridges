@@ -32,11 +32,11 @@ module shim(de, di, h, code, label) {
 	}
 }
 
-module precisionShim10x5x1() {
+module precision_shim_10x5x1() {
 	shim(10,5,1,"precision-shim", "Precision Shim");
 }
 
 module shim_test() {
 	$fn = 32;
-	precisionShim10x5x1();
+	precision_shim_10x5x1();
 }
