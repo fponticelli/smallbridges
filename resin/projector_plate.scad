@@ -1,6 +1,6 @@
 use <plate.scad>;
 
-module Acer_Plate(width, height, offsetX = 0, offsetY = 0, depth = 4) {
+module Acer_Plate(width, height, offsetX = 0, offsetY = 0, depth = 3.125) {
   x = 264 - 44.5;
   y = 220 - 20 - 81.5;
   p0 = [0, 0, -depth / 2];
