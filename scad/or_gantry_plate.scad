@@ -84,7 +84,7 @@ module or_gantry_plate(mod = 1) {
 	bom(str("ORGP_",mod), str("OpenRail Gantry Plate: ", mw, "x", mh, "mm"), "plates");
 
 	color(AnodizedBlack)
-		rotate([0,0,90]) difference() {
+		difference() {
 			hull()
 				for(x = [-1,1], y = [-1,1])
 					translate([x*(mw/2-10),y*(mh/2-10),-or_gantry_plate_height/2])
