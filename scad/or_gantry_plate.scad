@@ -96,3 +96,14 @@ module or_gantry_plate(mod = 1) {
 			}
 		}
 }
+
+module or_gantry_plate_test() {
+	translate([-300, 0, 0])
+		or_gantry_plate(1);
+	translate([-100, 0, 0])
+		or_gantry_plate(2);
+	translate([100, 0, 0])
+		or_gantry_plate(3);
+	translate([300, 0, 0])
+		or_gantry_plate(4);
+}
