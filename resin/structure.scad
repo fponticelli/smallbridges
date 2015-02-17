@@ -34,10 +34,10 @@ translate([0, projector_movement, -offset_depth]) {
       profile_20x60(beam_width);
   translate([beam_width/2,-60,-10])
     rotate([90,0,90])
-      gantry_cart_big(carriage_tower_sections);
+      gantry_cart_big(carriage_tower_sections, offset = 1);
   translate([-beam_width/2,-60,-10])
-    rotate([-90,0,90])
-      gantry_cart_big(carriage_tower_sections);
+    rotate([90,0,-90])
+      gantry_cart_big(carriage_tower_sections, offset = 1);
 }
 
 translate([0, 0, -offset_depth]) {

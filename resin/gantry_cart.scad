@@ -5,7 +5,7 @@ use <../scad/shim.scad>
 
 gantry_cart_wheel_mid = 15.5;
 
-module gantry_cart_big(sections = 1, wheelstop = 2, wheelsbottom = 2) {
+module gantry_cart_big(sections = 1, wheelstop = 2, wheelsbottom = 2, offset = 0) {
   wheels_top = [
     [],
     [[], [10], [ 9,11], [ 9,10,11]],
@@ -20,26 +20,28 @@ module gantry_cart_big(sections = 1, wheelstop = 2, wheelsbottom = 2) {
     [[], [16], [15,17], [15,16,17]],
     [[], [13], [12,14], [12,13,14]]
   ];
-  translate([0,0,vslot_gantry_plate_height/2])
-    vslot_gantry_plate_big(sections, wheelstop, wheelsbottom);
-  translate([0,0,vslot_gantry_plate_height]) {
-    for(s = wheels_top[sections][wheelstop]) {
-      translate(vslot_gantry_plate_holes_big[s]) {
-        ob_eccentric_spacer();
-        translate([0,0,6.85]) {
-          precision_shim_10x5x1();
-          translate([0,0,ob_wheel_half_width])
-            ob_solid_wheel();
+  translate([0,-offset * 10,0]) {
+    translate([0,0,vslot_gantry_plate_height/2])
+      vslot_gantry_plate_big();
+    translate([0,0,vslot_gantry_plate_height]) {
+      for(s = wheels_top[sections+offset][wheelstop]) {
+        translate(vslot_gantry_plate_holes_big[s]) {
+          ob_eccentric_spacer();
+          translate([0,0,6.85]) {
+            precision_shim_10x5x1();
+            translate([0,0,ob_wheel_half_width])
+              ob_solid_wheel();
+          }
         }
       }
-    }
-    for(s = wheels_bottom[sections][wheelsbottom]) {
-      translate(vslot_gantry_plate_holes_big[s]) {
-        ob_spacer(6.35);
-        translate([0,0,6.85]) {
-          precision_shim_10x5x1();
-          translate([0,0,ob_wheel_half_width])
-            ob_solid_wheel();
+      for(s = wheels_bottom[sections-offset][wheelsbottom]) {
+        translate(vslot_gantry_plate_holes_big[s]) {
+          ob_spacer(6.35);
+          translate([0,0,6.85]) {
+            precision_shim_10x5x1();
+            translate([0,0,ob_wheel_half_width])
+              ob_solid_wheel();
+          }
         }
       }
     }
