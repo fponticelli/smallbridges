@@ -1,6 +1,6 @@
 include <MCAD/materials.scad>
-include <MCAD/regular_shapes.scad>
 use <bom.scad>;
+use <geom.scad>;
 
 module ob_spacer(length = 1) {
   bom(str("ob-alu-spacer-",length), str("Aluminum Spacer (", length,")"), ["hardware"]);
@@ -33,3 +33,11 @@ module ob_eccentric_spacer() {
       cylinder(lengtht*2,m5/2,m5/2);
   }
 }
+
+module ob_spacer_test() {
+  ob_spacer(6);
+  translate([30, 0, 0])
+    ob_eccentric_spacer();
+}
+
+ob_spacer_test();
