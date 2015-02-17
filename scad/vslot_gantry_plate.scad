@@ -48,7 +48,7 @@ module vslot_gantry_plate_big() {
 
 	color(AnodizedBlack) {
 		linear_extrude(height = vslot_gantry_plate_height, center = true, convexity = 10)
-   		import (file = "../dxf/vslot_gantry_plate.dxf");
+   		import(file = "./vslot_gantry_plate.dxf");
 	}
 }
 
