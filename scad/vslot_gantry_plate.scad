@@ -51,3 +51,7 @@ module vslot_gantry_plate_big() {
    		import (file = "../dxf/vslot_gantry_plate.dxf");
 	}
 }
+
+module vslot_gantry_plate_test() {
+	vslot_gantry_plate_big();
+}
