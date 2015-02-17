@@ -48,13 +48,15 @@ Acer_lens_diameter = 30; // ~
 Acer_lens_x = 55; // ~
 Acer_lens_y = Acer_support_height + Acer_size_height / 2; // ~
 
+acer_projector_distances = [112, 225, 337];
+
 module Acer_H6510BD(showProjection=true) {
   projector(Acer_size_width, Acer_size_depth, Acer_size_height, Acer_support_height, Acer_lens_diameter, Acer_lens_x, Acer_lens_y);
   if(showProjection) {
     distToWidth = 192/225;
     widthToHeight = 16/9;
     color([0.75,1,1,0.1]) {
-      for(dist = [112, 225, 337])
+      for(dist = acer_projector_distances)
         projection([-Acer_lens_y,Acer_lens_x,-Acer_size_depth], distToWidth, widthToHeight, dist);
     }
 
@@ -71,4 +73,4 @@ module center_projector(pos) {
   }
 }
 
-Acer_H6510BD();
+//Acer_H6510BD();
