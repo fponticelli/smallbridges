@@ -1,7 +1,7 @@
 include <printer.scad>;
 
 $fn = 12;
-$detailed = true;
+$detailed = false;
 
 rotate([90,0,0]) {
   printer(2);

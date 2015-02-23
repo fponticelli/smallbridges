@@ -8,6 +8,8 @@ include <gantry_cart.scad>
 use <../scad/brackets.scad>
 use <../scad/geom.scad>
 use <support_projector_beam.scad>
+include <materials.scad>
+use <basin_support.scad>
 
 module printer(projector_position = 0) {
   offset_depth = 50;
@@ -15,8 +17,9 @@ module printer(projector_position = 0) {
   middle_sections = 2;
 
   height = 500;
-  width = 480;
-  base_depth = 320;
+  width = 500;
+  base_depth = 360;
+  display_projection = false;
 
   projector_movement = height / 2 - acer_projector_distances[projector_position] + middle_sections * 20;
 
@@ -25,7 +28,7 @@ module printer(projector_position = 0) {
     translate([0, projector_movement, 0]) {
       center_projector() {
         Acer_Plate(160, 120, 85, 100);
-        Acer_H6510BD(true);
+        Acer_H6510BD(display_projection);
       }
     }
   }
@@ -108,9 +111,11 @@ module printer(projector_position = 0) {
   offset = 16;
   plate_width = width + 20 - offset * 2;
   plate_depth = base_depth - 20 * 2;
+  cut_width = 440;
+  cut_offset = 7.5;
   translate([
     -plate_width/2,
     height/2 + middle_sections * 20,
     -plate_depth / 2 + 20 - offset])
-    cube([plate_width, 4, plate_depth]);
+    basin_support(plate_width, plate_depth, cut_width, cut_offset);
 }
