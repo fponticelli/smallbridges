@@ -10,6 +10,7 @@ use <../scad/geom.scad>
 use <support_projector_beam.scad>
 include <materials.scad>
 use <basin_support.scad>
+use <big_screw.scad>
 
 module printer(projector_position = 0) {
   offset_depth = 50;
@@ -118,4 +119,7 @@ module printer(projector_position = 0) {
     height/2 + middle_sections * 20,
     -plate_depth / 2 + 20 - offset])
     basin_support(plate_width, plate_depth, cut_width, cut_offset);
+
+  translate([0, height/2 + 20 * middle_sections, base_depth / 2 - 10])
+    big_screw();
 }
