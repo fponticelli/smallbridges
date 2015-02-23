@@ -48,7 +48,7 @@ Acer_lens_diameter = 30; // ~
 Acer_lens_x = 55; // ~
 Acer_lens_y = Acer_support_height + Acer_size_height / 2; // ~
 
-acer_projector_distances = [112, 225, 337];
+acer_projector_distances = [112, 225, 285.75];
 
 module Acer_H6510BD(showProjection=true) {
   projector(Acer_size_width, Acer_size_depth, Acer_size_height, Acer_support_height, Acer_lens_diameter, Acer_lens_x, Acer_lens_y);

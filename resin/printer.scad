@@ -9,12 +9,16 @@ use <../scad/brackets.scad>
 use <../scad/geom.scad>
 use <support_projector_beam.scad>
 
-module printer() {
+module printer(projector_position = 0) {
   offset_depth = 50;
 
-  projector_position = 0;
+  middle_sections = 2;
+
   height = 500;
-  projector_movement = height / 2 - acer_projector_distances[projector_position];
+  width = 480;
+  base_depth = 320;
+
+  projector_movement = height / 2 - acer_projector_distances[projector_position] + middle_sections * 20;
 
   // projector
   translate([0, 0, -offset_depth]) {
@@ -25,7 +29,6 @@ module printer() {
       }
     }
   }
-  width = 480;
   beam_offset = 10;
   beam_width = width - 2 * beam_offset;
 
@@ -56,15 +59,14 @@ module printer() {
   }
 
   // supports for horizontal beam
-  translate([0, 0, -offset_depth])
+  translate([0, middle_sections * 20, -offset_depth])
   for(d = acer_projector_distances) {
-    translate([0,d-height/2-40,0])
+    translate([0,d-height/2+10,0])
       support_projector_beam(width-60);
   }
   //height / 2 - d
 
   // base
-  base_depth = 400;
   module base(width, depth, sections = 2) {
     profile_height = sections * 20;
     translate([-width/2,0,-base_depth/2])
@@ -90,7 +92,6 @@ module printer() {
   translate([0,-(height+bottom_sections*20)/2,0])
     base(width, base_depth, bottom_sections);
 
-  middle_sections = 2;
   translate([0,(height+middle_sections*20)/2,0])
     base(width, base_depth, middle_sections);
 
@@ -103,4 +104,13 @@ module printer() {
   translate([width/2,-height/2,tower_pos])
     rotate([-90,0,0])
       profile_20x40(height);
+
+  offset = 16;
+  plate_width = width + 20 - offset * 2;
+  plate_depth = base_depth - 20 * 2;
+  translate([
+    -plate_width/2,
+    height/2 + middle_sections * 20,
+    -plate_depth / 2 + 20 - offset])
+    cube([plate_width, 4, plate_depth]);
 }
