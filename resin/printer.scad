@@ -99,71 +99,74 @@ module printer(projector_position = 0) {
   translate([0,(height+middle_sections*20)/2,0])
     base(width, base_depth, middle_sections);
 
-
   // support towers
-  tower_pos = base_depth / 2 - 20;
+  tower_pos = base_depth / 2 - 10;
   translate([-width/2,-height/2,tower_pos])
     rotate([-90,0,0])
-      profile_20x40(height);
+      profile(1, height);
   translate([width/2,-height/2,tower_pos])
     rotate([-90,0,0])
-      profile_20x40(height);
+      profile(1, height);
 
-  offset = 16;
-  plate_width = width + 20 - offset * 2;
-  plate_depth = base_depth - 20 * 2;
-  cut_width = 440;
-  cut_offset = 7.5;
-  translate([
-    -plate_width/2,
-    height/2 + middle_sections * 20,
-    -plate_depth / 2 + 20 - offset])
-    basin_support(plate_width, plate_depth, cut_width, cut_offset);
+  rotate([0,180,0]) {
 
-  translate([0, height/2 + 20 * middle_sections, base_depth / 2 - 10])
-    big_screw();
+    offset = 16;
+    plate_width = width + 20 - offset * 2;
+    plate_depth = base_depth - 20 * 2;
+    cut_width = 440;
+    cut_offset = 7.5;
+    translate([
+      -plate_width/2,
+      height/2 + middle_sections * 20,
+      -plate_depth / 2 + 20 - offset])
+      basin_support(plate_width, plate_depth, cut_width, cut_offset);
 
-  // TODO review
-  screw_height = 640;
-  rotate([-90, 0, 0]) {
-    translate([65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
-      profile(1, screw_height);
+    translate([0, height/2 + 20 * middle_sections, base_depth / 2 - 10])
+      big_screw();
+
+    // TODO review
+    screw_height = 640;
+    rail_sections = 2;
+    rotate([-90, 0, 0]) {
+      translate([65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
+        profile(rail_sections, screw_height);
+      }
+      translate([-65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
+        profile(rail_sections, screw_height);
+      }
     }
-    translate([-65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
-      profile(1, screw_height);
-    }
+    translate([40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
+      rotate([0, 180, 0])
+        profile(4, 210);
+    translate([-40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
+      rotate([0, 180, 0])
+        profile(4, 210);
+    translate([-50, height / 2 + 20 * middle_sections + 300, base_depth / 2 -60])
+      plate(100, 4, 80);
+    translate([-50, height / 2 + 20 * middle_sections + 216, base_depth / 2 -60])
+      plate(100, 4, 80);
+    translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - 180])
+      rotate([90,90,0])
+        profile(3, 140);
+
+    translate([65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
+      rotate([0,90,0])
+        ob_solid_wheel();
+    translate([65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 20 - rail_sections * 10])
+      rotate([0,90,0])
+        ob_solid_wheel();
+    translate([65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + rail_sections * 10])
+      rotate([0,90,0])
+        ob_solid_wheel();
+
+    translate([-65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
+      rotate([0,90,0])
+        ob_solid_wheel();
+    translate([-65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 20 - rail_sections * 10])
+      rotate([0,90,0])
+        ob_solid_wheel();
+    translate([-65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + rail_sections * 10])
+      rotate([0,90,0])
+        ob_solid_wheel();
   }
-  translate([40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
-    rotate([0, 180, 0])
-      profile(4, 210);
-  translate([-40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
-    rotate([0, 180, 0])
-      profile(4, 210);
-  translate([-50, height / 2 + 20 * middle_sections + 300, base_depth / 2 -60])
-    plate(100, 4, 80);
-  translate([-50, height / 2 + 20 * middle_sections + 216, base_depth / 2 -60])
-    plate(100, 4, 80);
-  translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - 180])
-    rotate([90,90,0])
-      profile(3, 140);
-
-  translate([65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 30])
-    rotate([0,90,0])
-      ob_solid_wheel();
-  translate([65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 30])
-    rotate([0,90,0])
-      ob_solid_wheel();
-  translate([65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + 10])
-    rotate([0,90,0])
-      ob_solid_wheel();
-
-  translate([-65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 30])
-    rotate([0,90,0])
-      ob_solid_wheel();
-  translate([-65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 30])
-    rotate([0,90,0])
-      ob_solid_wheel();
-  translate([-65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + 10])
-    rotate([0,90,0])
-      ob_solid_wheel();
 }
