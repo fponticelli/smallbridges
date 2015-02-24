@@ -122,4 +122,48 @@ module printer(projector_position = 0) {
 
   translate([0, height/2 + 20 * middle_sections, base_depth / 2 - 10])
     big_screw();
+
+  // TODO review
+  screw_height = 640;
+  rotate([-90, 0, 0]) {
+    translate([65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
+      profile(1, screw_height);
+    }
+    translate([-65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
+      profile(1, screw_height);
+    }
+  }
+  translate([40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
+    rotate([0, 180, 0])
+      profile(4, 210);
+  translate([-40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
+    rotate([0, 180, 0])
+      profile(4, 210);
+  translate([-50, height / 2 + 20 * middle_sections + 300, base_depth / 2 -60])
+    plate(100, 4, 80);
+  translate([-50, height / 2 + 20 * middle_sections + 216, base_depth / 2 -60])
+    plate(100, 4, 80);
+  translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - 180])
+    rotate([90,90,0])
+      profile(3, 140);
+
+  translate([65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 30])
+    rotate([0,90,0])
+      ob_solid_wheel();
+  translate([65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 30])
+    rotate([0,90,0])
+      ob_solid_wheel();
+  translate([65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + 10])
+    rotate([0,90,0])
+      ob_solid_wheel();
+
+  translate([-65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 30])
+    rotate([0,90,0])
+      ob_solid_wheel();
+  translate([-65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 30])
+    rotate([0,90,0])
+      ob_solid_wheel();
+  translate([-65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + 10])
+    rotate([0,90,0])
+      ob_solid_wheel();
 }
