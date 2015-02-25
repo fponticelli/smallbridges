@@ -21,6 +21,7 @@ module printer(projector_position = 0) {
   width = 500;
   base_depth = 360;
   display_projection = false;
+  base_sections = 3;
 
   projector_movement = height / 2 - acer_projector_distances[projector_position] + middle_sections * 20;
 
@@ -39,9 +40,9 @@ module printer(projector_position = 0) {
   carriage_tower_sections = 3;
 
   translate([0, projector_movement, -offset_depth]) {
-    translate([-beam_width/2,-60,-10])
+    translate([-beam_width/2,-20 * base_sections,-10])
       rotate([90,90,90])
-        profile_20x60(beam_width);
+        profile(base_sections, beam_width);
   /*
     translate([beam_width/2,-60,-10])
       rotate([90,0,90])
@@ -92,7 +93,7 @@ module printer(projector_position = 0) {
   }
 
 
-  bottom_sections = 4;
+  bottom_sections = 3;
   translate([0,-(height+bottom_sections*20)/2,0])
     base(width, base_depth, bottom_sections);
 
@@ -121,52 +122,54 @@ module printer(projector_position = 0) {
       -plate_depth / 2 + 20 - offset])
       basin_support(plate_width, plate_depth, cut_width, cut_offset);
 
-    translate([0, height/2 + 20 * middle_sections, base_depth / 2 - 10])
+    translate([0, height/2 + 20 * middle_sections, base_depth / 2 + 20])
       big_screw();
 
     // TODO review
     screw_height = 640;
     rail_sections = 2;
     rotate([-90, 0, 0]) {
-      translate([65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
-        profile(rail_sections, screw_height);
+      translate([65, -base_depth / 2 - 20, -height / 2 - 20 * (bottom_sections)]) {
+        profile(rail_sections, screw_height + height + 20 * (bottom_sections + middle_sections));
       }
-      translate([-65, -base_depth / 2 + 10, height / 2 + 20 * middle_sections]) {
-        profile(rail_sections, screw_height);
+      translate([-65, -base_depth / 2 - 20, -height / 2 - 20 * (bottom_sections)]) {
+        profile(rail_sections, screw_height + height + 20 * (bottom_sections + middle_sections));
       }
     }
-    translate([40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
-      rotate([0, 180, 0])
-        profile(4, 210);
-    translate([-40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
-      rotate([0, 180, 0])
-        profile(4, 210);
-    translate([-50, height / 2 + 20 * middle_sections + 300, base_depth / 2 -60])
-      plate(100, 4, 80);
-    translate([-50, height / 2 + 20 * middle_sections + 216, base_depth / 2 -60])
-      plate(100, 4, 80);
-    translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - 180])
-      rotate([90,90,0])
-        profile(3, 140);
+    translate([0,0,30]) {
+      translate([40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
+        rotate([0, 180, 0])
+          profile(4, 240);
+      translate([-40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
+        rotate([0, 180, 0])
+          profile(4, 240);
+      translate([-50, height / 2 + 20 * middle_sections + 300, base_depth / 2 -60])
+        plate(100, 4, 80);
+      translate([-50, height / 2 + 20 * middle_sections + 216, base_depth / 2 -60])
+        plate(100, 4, 80);
+      translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - 210])
+        rotate([90,90,0])
+          profile(3, 140);
 
-    translate([65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
-      rotate([0,90,0])
-        ob_solid_wheel();
-    translate([65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 20 - rail_sections * 10])
-      rotate([0,90,0])
-        ob_solid_wheel();
-    translate([65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + rail_sections * 10])
-      rotate([0,90,0])
-        ob_solid_wheel();
+      translate([65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
+        rotate([0,90,0])
+          ob_solid_wheel();
+      translate([65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 20 - rail_sections * 10])
+        rotate([0,90,0])
+          ob_solid_wheel();
+      translate([65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + rail_sections * 10])
+        rotate([0,90,0])
+          ob_solid_wheel();
 
-    translate([-65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
-      rotate([0,90,0])
-        ob_solid_wheel();
-    translate([-65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 20 - rail_sections * 10])
-      rotate([0,90,0])
-        ob_solid_wheel();
-    translate([-65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + rail_sections * 10])
-      rotate([0,90,0])
-        ob_solid_wheel();
+      translate([-65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
+        rotate([0,90,0])
+          ob_solid_wheel();
+      translate([-65, height / 2 + 20 * middle_sections + 240 - 10, base_depth / 2 - 20 - rail_sections * 10])
+        rotate([0,90,0])
+          ob_solid_wheel();
+      translate([-65, height / 2 + 20 * middle_sections + 270 - 10, base_depth / 2 + rail_sections * 10])
+        rotate([0,90,0])
+          ob_solid_wheel();
+    }
   }
 }
