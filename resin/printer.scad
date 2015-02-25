@@ -18,8 +18,8 @@ module printer(projector_position = 0) {
   middle_sections = 2;
 
   height = 500;
-  width = 500;
-  base_depth = 360;
+  width = 560;
+  base_depth = 400;
   display_projection = false;
   base_sections = 3;
 
@@ -73,7 +73,6 @@ module printer(projector_position = 0) {
 
   // base
   module base(width, depth, sections = 2) {
-    profile_height = sections * 20;
     translate([-width/2,0,-base_depth/2])
       rotate([0,0,0])
         profile(sections, base_depth);
@@ -92,13 +91,31 @@ module printer(projector_position = 0) {
         profile(sections, lateral_beam_width);
   }
 
+  module baser(width, depth, sections = 2) {
+    translate([(- width + sections * 20) / 2 - 10, -10, -base_depth/2])
+      rotate([0,0,90])
+        profile(sections, base_depth);
+
+    translate([(  width - sections * 20) / 2 + 10, -10, -base_depth/2])
+      rotate([0,0,90])
+        profile(sections, base_depth);
+
+    lateral_beam_width = width - 30 * sections;
+    translate([-lateral_beam_width/2, -10, -base_depth/2+30])
+      rotate([90,0,90])
+        profile(sections, lateral_beam_width);
+    translate([-lateral_beam_width/2, -10, base_depth/2-30])
+      rotate([90,0,90])
+        profile(sections, lateral_beam_width);
+  }
+
 
   bottom_sections = 3;
   translate([0,-(height+bottom_sections*20)/2,0])
     base(width, base_depth, bottom_sections);
 
   translate([0,(height+middle_sections*20)/2,0])
-    base(width, base_depth, middle_sections);
+    baser(width, base_depth, 3);
 
   // support towers
   tower_pos = base_depth / 2 - 10;
@@ -112,13 +129,13 @@ module printer(projector_position = 0) {
   rotate([0,180,0]) {
 
     offset = 16;
-    plate_width = width + 20 - offset * 2;
-    plate_depth = base_depth - 20 * 2;
+    plate_width = width - 20 - offset * 2;
+    plate_depth = base_depth - 60 * 2;
     cut_width = 440;
     cut_offset = 7.5;
     translate([
       -plate_width/2,
-      height/2 + middle_sections * 20,
+      height/2 + 20,
       -plate_depth / 2 + 20 - offset])
       basin_support(plate_width, plate_depth, cut_width, cut_offset);
 
