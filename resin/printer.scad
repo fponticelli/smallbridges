@@ -19,7 +19,7 @@ module printer(projector_position = 0) {
 
   height = 500;
   width = 560;
-  base_depth = 400;
+  base_depth = 440;
   display_projection = false;
   base_sections = 3;
 
@@ -156,15 +156,15 @@ module printer(projector_position = 0) {
     translate([0,0,30]) {
       translate([40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
         rotate([0, 180, 0])
-          profile(4, 240);
+          profile(4, width / 2 + rail_sections * 2 - 5);
       translate([-40, height / 2 + 20 * middle_sections + 260, base_depth / 2 + 20])
         rotate([0, 180, 0])
-          profile(4, 240);
+          profile(4, width / 2 + rail_sections * 2 - 5);
       translate([-50, height / 2 + 20 * middle_sections + 300, base_depth / 2 -60])
         plate(100, 4, 80);
       translate([-50, height / 2 + 20 * middle_sections + 216, base_depth / 2 -60])
         plate(100, 4, 80);
-      translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - 210])
+      translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - width / 2 + 30])
         rotate([90,90,0])
           profile(3, 140);
 
