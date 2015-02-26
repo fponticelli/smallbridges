@@ -110,12 +110,12 @@ module printer(projector_position = 0) {
   }
 
 
-  bottom_sections = 3;
+  bottom_sections = 2;
   translate([0,-(height+bottom_sections*20)/2,0])
     base(width, base_depth, bottom_sections);
 
   translate([0,(height+middle_sections*20)/2,0])
-    baser(width, base_depth, 3);
+    baser(width, base_depth, 2);
 
   // support towers
   tower_pos = base_depth / 2 - 10;
@@ -166,7 +166,7 @@ module printer(projector_position = 0) {
         plate(100, 4, 80);
       translate([0, height / 2 + 20 * middle_sections + 300, base_depth / 2 - width / 2 + 30])
         rotate([90,90,0])
-          profile(3, 140);
+          profile(3, 120);
 
       translate([65, height / 2 + 20 * middle_sections + 300 - 10, base_depth / 2 - 20 - rail_sections * 10])
         rotate([0,90,0])
