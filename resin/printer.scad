@@ -20,7 +20,6 @@ module printer(projector_position = 0) {
   height = 500;
   width = 560;
   base_depth = 390;
-  display_projection = true;
   base_sections = 3;
 
   projector_movement = height / 2 - acer_projector_distances[projector_position] + 20;
@@ -30,7 +29,7 @@ module printer(projector_position = 0) {
     translate([0, projector_movement, 0]) {
       center_projector() {
         Acer_Plate(160, 120, 85, 100);
-        Acer_H6510BD(display_projection);
+        Acer_H6510BD($display_projection);
       }
     }
   }
