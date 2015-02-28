@@ -20,10 +20,10 @@ module printer(projector_position = 0) {
   height = 500;
   width = 560;
   base_depth = 440;
-  display_projection = false;
+  display_projection = true;
   base_sections = 3;
 
-  projector_movement = height / 2 - acer_projector_distances[projector_position] + middle_sections * 20;
+  projector_movement = height / 2 - acer_projector_distances[projector_position] + 20;
 
   // projector
   translate([0, 0, -offset_depth]) {
@@ -64,7 +64,7 @@ module printer(projector_position = 0) {
   }
 
   // supports for horizontal beam
-  translate([0, middle_sections * 20, -offset_depth])
+  translate([0, 20, -offset_depth])
   for(d = acer_projector_distances) {
     translate([0,d-height/2+10,0])
       support_projector_beam(width-60);
