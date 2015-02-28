@@ -132,7 +132,7 @@ module printer(projector_position = 0) {
     plate_width = width - 20 - offset * 2;
     plate_depth = base_depth - 40 * 2;
     cut_width = 440;
-    cut_offset = 7.5;
+    cut_offset = 1.0;
     translate([
       -plate_width/2,
       height/2 + 20,
