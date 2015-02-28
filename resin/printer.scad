@@ -19,7 +19,7 @@ module printer(projector_position = 0) {
 
   height = 500;
   width = 560;
-  base_depth = 440;
+  base_depth = 390;
   display_projection = true;
   base_sections = 3;
 
