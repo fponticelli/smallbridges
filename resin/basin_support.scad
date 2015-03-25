@@ -6,6 +6,17 @@ module basin_support(w, h, cw, offh = 0) {
   dc = 2;
   dw = 4;
   ch = cw / 16 * 9;
+  echo(str(
+    "WINDOW OPENING ",
+    w,
+    "x",
+    h,
+    "mm (",
+    cw,
+    "x",
+    ch,
+    "mm)"
+  ));
   difference() {
     plate(w, d, h, RedAcrylic);
     translate([0,0,-offh]) {

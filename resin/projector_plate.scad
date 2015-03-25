@@ -7,6 +7,14 @@ module Acer_Plate(width, height, offsetX = 0, offsetY = 0, depth = 3.125) {
   p1 = [-110.05, 0, -depth / 2];
   p2 = [-55, 81.5, -depth / 2];
   rad = 1.75; // screw is 1.5
+  echo(str(
+    "Projector Plate ",
+    width,
+    "x",
+    height,
+    "mm"
+
+  ));
   difference() {
     translate([offsetX, offsetY, 0])
       plate(width, height, depth);
