@@ -81,6 +81,7 @@ module printer(projector_position = 0) {
         profile(sections, base_depth);
 
     lateral_beam_width = width - 20;
+    echo(str(lateral_beam_width));
     translate([-lateral_beam_width/2,0,-base_depth/2+10])
       rotate([0,90,0])
         profile(sections, lateral_beam_width);
@@ -100,6 +101,7 @@ module printer(projector_position = 0) {
         profile(sections, base_depth);
 
     lateral_beam_width = width - 30 * sections;
+    echo(str(lateral_beam_width));
     translate([-lateral_beam_width/2, -10, -base_depth/2+20])
       rotate([90,0,90])
         profile(sections, lateral_beam_width);
