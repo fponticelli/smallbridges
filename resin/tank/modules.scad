@@ -1,10 +1,12 @@
-width   = 120;
-height  = 80;
-glass_thickness = 6;
-wall_height = 30;
-wall_thickness = 3;
+inch    = 25.4;
+width   = inch * 9;
+height  = inch * 6;
+glass_thickness = inch / 5;
+wall_thickness = inch / 8;
 cut_depth = 1;
+tank_depth = 40;
 support_height = 2;
+wall_height = tank_depth + support_height + glass_thickness;
 
 module glass(w,d,h) {
   color([1,1,1,0.35])
