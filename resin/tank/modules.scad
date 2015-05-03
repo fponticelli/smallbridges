@@ -1,7 +1,7 @@
 inch    = 25.4;
 width   = inch * 9;
 height  = inch * 6;
-glass_thickness = inch / 5;
+glass_thickness = inch / 5 + 0.2;
 wall_thickness = inch / 8;
 cut_depth = 1;
 tank_depth = 40;
