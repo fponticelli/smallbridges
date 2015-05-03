@@ -1,3 +1,11 @@
+width   = 120;
+height  = 80;
+glass_thickness = 6;
+wall_height = 30;
+wall_thickness = 3;
+cut_depth = 1;
+support_height = 2;
+
 module glass(w,d,h) {
   color([1,1,1,0.35])
   cube([w,d,h], center=true);
@@ -32,14 +40,6 @@ module side2(width, height, support_height, wall_thickness, cut_depth, glass_thi
         cube([wall_thickness+2,height2,wall_thickness], center=true);
     }
 }
-
-width   = 120;
-height  = 80;
-glass_thickness = 8;
-wall_height = 30;
-wall_thickness = 3;
-cut_depth = 1;
-support_height = 2;
 
 module sideA() {
   side1(width + cut_depth * 0, wall_height, support_height, wall_thickness, cut_depth, glass_thickness);
